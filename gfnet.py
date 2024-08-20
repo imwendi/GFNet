@@ -329,7 +329,7 @@ class GFNetPyramid(nn.Module):
                 for j in range(depth[i])
                 ])
             else:
-                print('using layerscale block')
+                #print('using layerscale block')
                 blk = nn.Sequential(*[
                     BlockLayerScale(
                     dim=embed_dim[i], mlp_ratio=mlp_ratio[i],
