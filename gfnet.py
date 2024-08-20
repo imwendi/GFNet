@@ -374,14 +374,18 @@ class GFNetPyramid(nn.Module):
         self.num_classes = num_classes
         self.head = nn.Linear(self.embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
-    def forward_features(self, x):
+    def forward_features(self, x, return_mean=True):
         for i in range(4):
             x = self.patch_embed[i](x)
             if i == 0:
                 x = x + self.pos_embed
             x = self.blocks[i](x)
 
-        x = self.norm(x).mean(1)
+        x = self.norm(x)
+
+        if return_mean:
+            x = x.mean(1)
+
         return x
 
     def forward(self, x):

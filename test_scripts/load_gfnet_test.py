@@ -76,4 +76,7 @@ if __name__ == '__main__':
                     input_size=INPUT_SIZE,
                     arch_name=ARCH_NAME,
                     ckpt_pth=CKPT_PTH)
+
+    input = torch.randn(1, 3, INPUT_SIZE, INPUT_SIZE)
+    output = model.forward_features(input, return_mean=False)
     print()
